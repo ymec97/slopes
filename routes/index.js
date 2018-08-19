@@ -8,13 +8,20 @@ var getElevation = (req,res) => {
         json: true
     }, (err,result,body) => {
         elevationPnt = body.results[0].elevation;
-        
-        res.render('index.hbs',{
-            elevationPoint : elevationPnt
-        });
+        console.log(elevationPnt);
     })
 }
 
+var getHomepage = (req,res) =>{
+    res.render('index.hbs',{});
+}
+
+var getMap = (req,res) =>{
+    res.render('map.hbs',{});
+}
+
     module.exports = {
-        getElevation
+        getElevation,
+        getHomepage,
+        getMap
     }
