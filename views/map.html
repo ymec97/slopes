@@ -2,6 +2,10 @@
 <html ng-app="myApp">
   <head>
     <title>User-Editable Shapes</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="/js/index.js"></script>
     <script async defer
@@ -23,9 +27,9 @@
     </style>
   </head>
   <body ng-controller="myCtrl" >
-    <div id="map"></div>
+      <div id="innerMap"><div id="map"></div></div>
  
-    <script ng-controller="myCtrl">
+    <script >
       // This example adds a user-editable rectangle to the map.
 
       function initMap() {
@@ -40,8 +44,7 @@
             drawingControlOptions: {
               position: google.maps.ControlPosition.TOP_CENTER,
               drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-            },
-            markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
+            }
            
           });
           
@@ -62,12 +65,12 @@
         });
         rectangle.setMap(map);
 
-        var HttpClient = function() {
-    this.get = function(aUrl, aCallback) {
-        var anHttpRequest = new XMLHttpRequest();
-        anHttpRequest.onreadystatechange = function() { 
-            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-                aCallback(anHttpRequest.responseText);
+          var HttpClient = function() {
+            this.get = function(aUrl, aCallback) {
+                var anHttpRequest = new XMLHttpRequest();
+                anHttpRequest.onreadystatechange = function() { 
+                    if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                        aCallback(anHttpRequest.responseText);
         }
 
         anHttpRequest.open( "GET", aUrl, true );            
@@ -80,14 +83,14 @@
                 // do something with response
                 var h = 0;
         });
-        // rectangle.addListener('click', function(rectangle) {
-        //     var h =0;
-        //     var client = new HttpClient();
-        //         client.get('/getFOV', function(response) {
-        //             // do something with response
-        //             var h = 0;
-        //     });
-        // });
+        rectangle.addListener('click', function(rectangle) {
+            var h =0;
+            var client = new HttpClient();
+                client.get('/getFOV', function(response) {
+                    // do something with response
+                    var h = 0;
+            });
+        });
 
      }
     </script>   

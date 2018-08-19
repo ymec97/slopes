@@ -1,8 +1,13 @@
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 31.263433, lng: 34.810893},
-      zoom: 9
-    });
+var app = angular.module('myApp', []);
+
+app.service('Map', function($q, $http) {
+    
+    this.initMap = function() {
+      this.map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 31.263433, lng: 34.810893},
+        zoom: 9,
+      });
+
 
       var drawingManager = new google.maps.drawing.DrawingManager({
         drawingMode: google.maps.drawing.OverlayType.MARKER,
@@ -10,23 +15,18 @@ function initMap() {
         drawingControlOptions: {
           position: google.maps.ControlPosition.TOP_CENTER,
           drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-        },
-        markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
+        }
        
       });
       
-      drawingManager.setMap(map);
+      drawingManager.setMap(this.map);
       
       var bounds = {
-      north: 31.463433,
-      south: 31.363433,
-      east: 34.810893,
-      west: 34.610893
+      north: 31.4634,
+      south: 31.3634,
+      east: 34.8108,
+      west: 34.6103
     };
-
-    rectangle.addListener('click', function() {
-        var h =0;
-      });
 
     // Define a rectangle and set its editable property to true.
     var rectangle = new google.maps.Rectangle({
@@ -34,7 +34,23 @@ function initMap() {
       editable: true,
       draggable: true
     });
-    rectangle.setMap(map);
-    
-    
-  }
+    rectangle.setMap( this.map);
+
+    google.maps.event.addListener(drawingManager, 'markercomplete', function(marker, rectangle) {
+      $http({
+        url: "/getFOV", 
+        method: "GET",
+        params: {markerLat: marker.getPosition().lat() ,
+               markerLng: marker.getPosition().lng()}
+      });
+    });
+   
+    }
+   
+});
+
+app.controller('newPlaceCtrl', function($scope, Map, $interval) { 
+   $scope.initMap =  Map.initMap();
+
+});
+
