@@ -4,6 +4,7 @@
     <title>map</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="/js/index.js"></script>
+    <script src="../js/maps.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPRa-8xhczNM8dfYNBWl5BpLJAbQ0_5dU&callback=initMap&libraries=drawing"></script>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <link href="/public/stylesheets/map.css" rel="stylesheet">
@@ -21,8 +22,8 @@
   </head>
   <body ng-controller="myCtrl" >
     <div id="map"></div>
- 
-    <script ng-controller="myCtrl">
+
+    <!-- <script ng-controller="myCtrl">
       // This example adds a user-editable rectangle to the map.
 
       function initMap() {
@@ -39,11 +40,11 @@
               drawingModes: ['marker', 'circle', 'polygon', 'rectangle']
             },
             markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-           
+
           });
-          
+
           drawingManager.setMap(map);
      }
-    </script>   
+    </script>    -->
   </body>
 </html>

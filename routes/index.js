@@ -20,14 +20,34 @@ var getMap = (req,res) =>{
     res.render('map.hbs',{});
 }
 
+var getBestVantage = (locations) =>
+{
+  return locations.slice(0, 3)
+}
 
+var compareLocation = (a, b) =>
+{
+  if (a[0] > b[0])
+  {
+    return 1
+  }
+  else if (a[0] == b[0])
+  {
+    return 0
+  }
+  else {
+    return -1
+  }
+
+}
 // Returns a list of jsons
 // "numOfTiles" - number of tiles overlapping a targetArea
 // "area" - list of coordinates that overlap targetArea
 var getOverlaps = (locations, targetArea) => {
   var areaList = [{
-    numOfTiles,
-    area
+    coord, // The actual location of the point given
+    numOfTiles, // Number of tiles it's matrix has that overlap the targetArea
+    area // The coordinates that overlap the targetArea
   }];
   for (var locationsIndex = 0; locationsIndex < locations.length; locationsIndex++) {
     var numOfTilesInRange = 0;
@@ -42,7 +62,7 @@ var getOverlaps = (locations, targetArea) => {
       }
       areaList[locationsIndex].numOfTiles = numOfTilesInRange
   }
-
+  return areaList.sort(compareLocation)
 }
 
 }
