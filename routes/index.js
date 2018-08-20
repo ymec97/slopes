@@ -20,7 +20,11 @@ var getMap = (req,res) =>{
     res.render('map.hbs',{});
 }
 
-var getBestSpots = (locations, targetArea) => {
+
+// Returns a list of jsons
+// "numOfTiles" - number of tiles overlapping a targetArea
+// "area" - list of coordinates that overlap targetArea
+var getOverlaps = (locations, targetArea) => {
   var areaList = [{
     numOfTiles,
     area
@@ -30,22 +34,20 @@ var getBestSpots = (locations, targetArea) => {
 
     for (var coordinate = 0; coordinate < locations[locationsIndex].length; coordinate++)
     {
-      if !(coordinate.lat < targetArea[0].lat || coordinate.lat > targetArea[1].lat || coordinate.lng < targetArea[0].lng || coordinate.lng > targetArea[1].lng)
-        // In range
+      if (!(coordinate.lat < targetArea[0].lat || coordinate.lat > targetArea[1].lat || coordinate.lng < targetArea[0].lng || coordinate.lng > targetArea[1].lng))
+      {        // In range
 
         numOfTilesInRange++;
         areaList[locationsIndex].area.push(coordinate)
       }
       areaList[locationsIndex].numOfTiles = numOfTilesInRange
-
   }
 
 }
 
-[]
+}
     module.exports = {
         getElevation,
         getHomepage,
         getMap,
-        getBestSpots
     }
