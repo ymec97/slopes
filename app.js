@@ -17,13 +17,12 @@ app.get('/', (req, res) => {
     res.render('index.hbs', {
         title: 'Welcome page',
         CurrentYear: new Date().getFullYear()
-
     });
 });
 
 
 app.get('/map', (req, res) => {
-    res.sendFile(path.join(__dirname + '/views/newMap.html'));
+    res.sendFile(path.join(__dirname + '/views/map.html'));
 });
 
 app.get('/getFOV', (req, res) => {
