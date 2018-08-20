@@ -39,13 +39,13 @@ app.service('Map', function($q, $http) {
     });
     rectangle.setMap( this.map);
 
-    rectangle.addListener('mouseup', function(rectangle){
+    rectangle.addListener('mouseup', function(){
       this.rect = rectangle;
       alert("UP"); 
       $http({
             url: "/getFOV", 
             method: "GET",
-            params: {}
+            params: {b: this.rect.getBounds().b,f: this.rect.getBounds().f}
           });
     });
 

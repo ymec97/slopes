@@ -27,9 +27,8 @@ app.get('/map', (req, res) => {
 });
 
 app.get('/getFOV', (req, res) => {
-    marker = { Lat: req.query.markerLat, Lng: req.query.markerLng };
-    //FOV.CreateMatrix(marker);
-    //res.sendFile(path.join(__dirname+'/views/map.html'));
+    marker = { b: req.query.b, f: req.query.f };
+   
 });
 
 // app.get('/about', (req,res) =>{
