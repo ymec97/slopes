@@ -2,7 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 var path = require("path");
 var bodyparser = require("body-parser");
-
+var FOV = require("./controllers/FOVAlgo.js");
 var app = express();
 app.use(bodyparser.json());
 
@@ -27,7 +27,8 @@ app.get('/map', (req, res) => {
 });
 
 app.get('/getFOV', (req, res) => {
-    marker = { Lat: req.query.markerLat, Lng: req.query.markerLng }
+    marker = { Lat: req.query.markerLat, Lng: req.query.markerLng };
+    //FOV.CreateMatrix(marker);
     //res.sendFile(path.join(__dirname+'/views/map.html'));
 });
 

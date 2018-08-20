@@ -8,13 +8,16 @@ app.service('Map', function($q, $http) {
         zoom: 9,
       });
 
+        
 
       var drawingManager = new google.maps.drawing.DrawingManager({
         drawingMode: google.maps.drawing.OverlayType.MARKER,
         drawingControl: true,
         drawingControlOptions: {
           position: google.maps.ControlPosition.TOP_CENTER,
-          drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
+          drawingModes: [ 'rectangle', 'marker'],
+          editable: true,
+          draggable: true
         }
        
       });
@@ -36,14 +39,26 @@ app.service('Map', function($q, $http) {
     });
     rectangle.setMap( this.map);
 
-    google.maps.event.addListener(drawingManager, 'markercomplete', function(marker, rectangle) {
+    rectangle.addListener('mouseup', function(rectangle){
+      this.rect = rectangle;
+      alert("UP"); 
       $http({
-        url: "/getFOV", 
-        method: "GET",
-        params: {markerLat: marker.getPosition().lat() ,
-               markerLng: marker.getPosition().lng()}
-      });
+            url: "/getFOV", 
+            method: "GET",
+            params: {}
+          });
     });
+
+    // google.maps.event.addListener(drawingManager, 'markercomplete', function(marker, rectangle) {
+    //   $http({
+    //     url: "/getFOV", 
+    //     method: "GET",
+    //     params: {markerLat: marker.getPosition().lat() ,
+    //            markerLng: marker.getPosition().lng()}
+    //   });
+    // });
+
+    
    
     }
    
@@ -52,5 +67,8 @@ app.service('Map', function($q, $http) {
 app.controller('newPlaceCtrl', function($scope, Map, $interval) { 
    $scope.initMap =  Map.initMap();
 
+   $scope.SendData = function (){
+      var rect = Map.rectangle;
+   }
 });
 
