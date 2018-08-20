@@ -15,6 +15,8 @@ app.use(express.static(__dirname + '/views'));
 app.get('/', routes.getHomepage);
 app.get('/mapeval/', routes.getElevation);
 app.get('/map', routes.getMap);
+app.get('/BestSpots/', routes.GetBestSpots);
+
 
 app.get('/getFOV', (req,res)=>{
     req.body.param();
