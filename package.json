@@ -1,0 +1,26 @@
+{
+  "name": "slopes",
+  "version": "1.0.0",
+  "description": "Hackaton team 10!",
+  "main": "app.js",
+  "dependencies": {
+    "google": "^2.1.0",
+    "hbs": "^4.0.1",
+    "jest": "^23.5.0",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymec97/slopes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ymec97/slopes/issues"
+  },
+  "homepage": "https://github.com/ymec97/slopes#readme"
+}
