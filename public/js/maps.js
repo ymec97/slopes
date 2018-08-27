@@ -17,6 +17,24 @@ function initMap() {
     east: 34.80471,
     west: 34.79028
   };
+  // Define the LatLng coordinates for the polygon's path.
+    var triangleCoords = [
+      {lat: 30.656773002911446, lng: 34.78415738626006},
+      {lat: 30.66400853775304, lng: 34.79314815087798},
+      {lat: 30.644641175921908, lng: 34.79604731702443},
+      {lat:30.644641175921908, lng:34.79604731702443}
+    ];
+
+    // Construct the polygon.
+    var bermudaTriangle = new google.maps.Polygon({
+      paths: triangleCoords,
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35
+    });
+    bermudaTriangle.setMap(map);
 
     rectangle = new google.maps.Rectangle({
     bounds: bounds,
